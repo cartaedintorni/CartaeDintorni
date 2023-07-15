@@ -1,0 +1,10 @@
+{
+    "$schema": "cat.schema.json",
+    "categoria": "Archiviazione",
+    "info": {
+        "nome": "Archiviazione",
+        "descrizione": "",
+        "img": "icons\\negozio\\archiviazione.webp"
+    },
+    "prodotti": []
+}

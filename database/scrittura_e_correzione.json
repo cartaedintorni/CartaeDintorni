@@ -1,0 +1,10 @@
+{
+    "$schema": "cat.schema.json",
+    "categoria": "Scrittura e Correzione",
+    "info": {
+        "nome": "Archiviazione",
+        "descrizione": "",
+        "img": "icons\\negozio\\archiviazione.webp"
+    },
+    "prodotti": []
+}

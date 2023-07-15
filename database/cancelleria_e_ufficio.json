@@ -1,0 +1,10 @@
+{
+    "$schema": "cat.schema.json",
+    "categoria": "Cancelleria e Ufficio",
+    "info": {
+        "nome": "Cancelleria e Ufficio",
+        "descrizione": "",
+        "img": "icons\\negozio\\archiviazione.webp"
+    },
+    "prodotti": []
+}

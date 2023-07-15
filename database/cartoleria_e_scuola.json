@@ -1,0 +1,10 @@
+{
+    "$schema": "cat.schema.json",
+    "categoria": "Cartoleria e Scuola",
+    "info": {
+        "nome": "Cartoleria e Scuola",
+        "descrizione": "",
+        "img": "icons\\negozio\\archiviazione.webp"
+    },
+    "prodotti": []
+}

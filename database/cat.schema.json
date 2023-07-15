@@ -1,0 +1,87 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "cat.schema.json",
+    "type": "object",
+    "properties": {
+      "categoria": {
+        "type": "string"
+      },
+      "prodotti": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "nome": {
+                "type": "string"
+              },
+              "descrizione": {
+                "type": "string"
+              },
+              "prezzo": {
+                "type": "number"
+              },
+              "tag": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "marca": {
+                "type": "string"
+              },
+              "img": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "disponibilità": {
+                "type": "integer"
+              },
+              "dettagli": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "id",
+              "nome",
+              "descrizione",
+              "prezzo",
+              "tag",
+              "marca",
+              "img",
+              "disponibilità",
+              "dettagli"
+            ]
+          }
+        ]
+      },
+      "info": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type":"string"
+          },
+          "descrizione": {
+            "type":"string"
+          },
+          "img": {
+            "type":"string"
+          }
+        }
+      }
+    },
+    "required": [
+      "categoria",
+      "prodotti",
+      "info"
+    ]
+  }

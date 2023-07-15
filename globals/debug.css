@@ -1,0 +1,11 @@
+.header {
+    border: 1px solid black;
+}
+
+.header .center, .header .left, .header .right {
+    border: 1px solid red;
+}
+
+.block {
+    border: 1px solid black;
+}

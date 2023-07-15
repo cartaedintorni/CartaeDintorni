@@ -1,0 +1,10 @@
+{
+    "$schema": "cat.schema.json",
+    "categoria": "Disegno e Didattica",
+    "info": {
+        "nome": "Disegno e Didattica",
+        "descrizione": "",
+        "img": "icons\\negozio\\archiviazione.webp"
+    },
+    "prodotti": []
+}
