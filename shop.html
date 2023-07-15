@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="globals/page.css">
@@ -6,8 +7,9 @@
         <link rel="stylesheet" href="css/block.css">
         <link rel="stylesheet" href="css/shopcategory.css">
         <link rel="stylesheet" href="css/product.css">
-        <script src="database.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="./database.js"></script>
+
     </head>
     <body>
         <!-- HEADER -->
@@ -17,8 +19,8 @@
             </div>
             <div class="middle">
                 <div class="menu">
-                    <div class="menu-item"><a href="/home.php"><span>Home</span></a></div>
-                    <div class="menu-item"><a href="/shop.php"><span>Negozio</span></a></div>
+                    <div class="menu-item"><a href="/home.html"><span>Home</span></a></div>
+                    <div class="menu-item"><a href="/shop.html"><span>Negozio</span></a></div>
                     <div class="menu-item"><a href="/info.html"><span>Info</span></a></div>
                 </div>
             </div>
@@ -34,35 +36,81 @@
             <div class="block">
                 <div class="productlist">
                     <div class="search">
-                        
-                    </div>
-                    <div class="catalogue h-center">
-                        <script>
-                            if (true) {
-                                //$cat = $_GET["cat"];
+                        <input type="text" id="searchbox"/>
 
-                            } else {
-                                $arr = getCategories();
-                                document.write('<div class="shop-categories overflow-x-scroll">')
-                                arr.foreach((cat)=>{
-                                    var info = getInfo(cat);
-                                    document.write(`<div class="shop-category">
-                                        <div class="shop-category-header">
-                                            <img src="`+`" alt="`+`">
-                                        </div>
-                                        <div class="shop-category-body">
-                                            <a href="?cat=`+`">
-                                                <span>`+`</span>
-                                            </a>
-                                        </div>
-                                    </div>`);
-                                })
-                                document.write('</div>')
-                            }
-                        </script>
                     </div>
+                    <div class="catalogue h-center" id="catalogue"></div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            console.log("ca")
+            async function cb() {
+                document.getElementById("searchbox").addEventListener("change",(e)=>{
+
+                })
+                console.log("run")
+                
+                var txt = ""
+                var _cat = getQuery()["cat"]
+                /**
+                 * @type {Array}
+                 */
+                var arr = await getCategories();
+                if (arr.includes(_cat)) {
+                    var prods = (await getProducts(_cat))
+                    for (i in prods) {
+                        var prod = prods[i]
+                        console.log(prod["prezzo"])
+                        var prodinfo = "/product.html?data="+encodeURIComponent(JSON.stringify(prod))
+                        console.log(prodinfo)
+                        txt +=`<div class="product">
+                        <div class="product-header">
+                            <a src="`+prodinfo+`"><img src="`+prod["img"][0]+`" alt="`+`"></a>
+                        </div>
+                        <div class="product-body">
+                            <div class="product-category">
+                                <span class="truncate">
+                                    <a href="/shop.html?cat=`+_cat+`" rel="tag">`+_cat+`</a>
+                                </span>
+                            </div>
+                            <div class="product-title">
+                                <span class="truncate">
+                                    <a href="`+prodinfo+`">`+prod["nome"]+`</a>
+                                </span>
+                            </div>
+                            <div class="product-price">
+                                <span class="sans"><span class="currency">€</span>`+prod["prezzo"]+`</span>
+                            </div>
+                        </div>
+                    </div>`
+                    }                    
+                } else {
+                    console.log("run")
+                    txt += '<div class="shop-categories overflow-x-scroll">'
+                        for (i in arr) {
+                            var cat = arr[i]
+                            var info = await getInfo(cat);
+                            console.log(info)
+                            if (info) {
+                                txt+=`<div class="shop-category">
+                                    <div class="shop-category-header">
+                                        <img src="`+info["img"]+`" alt="`+`">
+                                        </div>
+                                        <div class="shop-category-body">
+                                            <a href="?cat=`+cat+`">
+                                        <span>`+info["nome"]+`</span>
+                                        </a>
+                                        </div>
+                                        </div>`
+                                    }
+                                }
+                    txt+='</div>'
+                }
+                document.getElementById("catalogue").innerHTML=txt
+                
+            }
+            cb()
+            </script>
     </body>
 </html>

@@ -1,44 +1,60 @@
 /**
  * @param {string} url 
- * @returns {string}
+ * @returns {Array}
  */
 async function file_get_contents(url) {
     return new Promise((resolve,reject)=>{
         $.ajax({
             url: url,
             type: "GET",
-            success: function (data) {
+            success: (data)=>{
                 resolve(data)
             },
             error: reject
         })
     })
 }
-function getCategories() {
+/**
+ * @returns {Array}
+ */
+async function getCategories() {
     var url = "/database/categories.json";
-    var cont = JSON.parse(file_get_contents(url));
+    var cont = await file_get_contents(url);
     return cont["categorie"];
 }
-function get(cat) {
-    var cats = getCategories();
+/**
+ * @returns {Array | null}
+ */
+async function get(cat) {
+    var cats = await getCategories();
     if (cats.includes(cat)) {
         var url = "/database/" + cat + ".json";
-        return JSON.parse(file_get_contents(url));
+        return await file_get_contents(url);
     } 
     return null;
 }
-function getProducts(cat) {
-    var res = get(cat);
-    if (!is_null(res)){
+/**
+ * @returns {Array | null}
+ */
+async function getProducts(cat) {
+    var res = await get(cat);
+    if (res!=null){
         return res["prodotti"];
     }
     return null;
 }
-function getInfo(cat) {
-    var res = get(cat);
-    if (!is_null(res)){
+/**
+ * @returns {JSON | null}
+ */
+async function getInfo(cat) {
+    var res = await get(cat);
+    if (res!=null){
         return res["info"];
     }
     return null;
 }
 
+function getQuery() {
+    var urlParams = new URLSearchParams(window.location.search);
+    return Object.fromEntries(urlParams.entries())
+}
