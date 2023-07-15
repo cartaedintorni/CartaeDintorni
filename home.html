@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="globals/debug.css"> -->
+
+        <link rel="stylesheet" href="globals/page.css">
+        <link rel="stylesheet" href="globals/icons.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/block.css">
+        <link rel="stylesheet" href="css/product.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <!-- HEADER -->
+        <div class="header">
+            <div class="left">
+                <img src="" alt="Carta e Dintorni">
+            </div>
+            <div class="middle">
+                <div class="menu">
+                    <div class="menu-item"><span><a href="/home.php">Home</a></span></div>
+                    <div class="menu-item"><span><a href="/shop.php">Negozio</a></span></div>
+                    <div class="menu-item"><span><a href="/info.html">Info</a></span></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="menu">
+                    <div class="menu-item"><a href="https://m.facebook.com/people/Carta-e-Dintorni-di-Antonella-Citro/100063020331066/"><img src="icons/facebook.png" alt="Facebook"></a></div>
+                    <div class="menu-item"><a href=""><img src="icons/instagram.png" alt="Instagram"></a></div>
+                    <!-- <div class="menu-item"><a href=""><img src="icons/whatsapp.png" alt="WhatsApp"></a></div> -->
+                </div>
+            </div>
+        </div>
+        <!-- !HEADER -->
+        <!-- FIRSTBLOCK -->
+        <div class="body">
+            <div class="block center bg-home block-style-home">
+                <h1>Carta e Dintorni</h1>
+            </div>
+            <div class="block center">
+                <div class="overflow-x-scroll">
+                    <h3 class="subtitle new-arrivals">Ultimi arrivi</h3>
+                    <div class="topproducts">
+                        <script>
+                            var product_array = [
+                                {"title":"Zaino Eastpak 1", "price":20,"img":"https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg", "category": "Zaino"},
+                                {"title":"Zaino Eastpak 2", "price":30,"img":"https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg", "category": "Zaino"},
+                                {"title":"Zaino Eastpak 3", "price":15,"img":"https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg", "category": "Zaino"}
+                            ]
+                            if (product_array.length>0) {
+                                product_array.forEach((value,key,arr)=>{
+                                    document.write(`
+                                    <div class="product">
+                                        <div class="product-header">
+                                            <a src="`+`"><img src="`+`" alt="`+`"></a>
+                                        </div>
+                                        <div class="product-body">
+                                            <div class="product-category">
+                                                <span class="truncate">
+                                                    <a href="`+`" rel="tag">`+`</a>
+                                                </span>
+                                            </div>
+                                            <div class="product-title">
+                                                <span class="truncate">
+                                                    <a href="`+`">`+`</a>
+                                                </span>
+                                            </div>
+                                            <div class="product-price">
+                                                <span class="sans"><span class="currency">€</span>`+`</span>
+                                            </div>
+                                        </div>
+                                    </div>`)
+                            })}
+                        </script> 
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+
+            </div>
+        </div>
+    </body>
+</html>

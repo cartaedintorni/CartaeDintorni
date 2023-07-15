@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="css/block.css">
         <link rel="stylesheet" href="css/shopcategory.css">
         <link rel="stylesheet" href="css/product.css">
+        <script src="database.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     </head>
     <body>
         <!-- HEADER -->
@@ -35,24 +37,29 @@
                         
                     </div>
                     <div class="catalogue h-center">
-                        <?php 
-                            include("database.php");
-                            include("debug.php");
-                            // echo "get: " . $_GET["cat"];
-                            clog();
+                        <script>
                             if (true) {
                                 //$cat = $_GET["cat"];
 
                             } else {
                                 $arr = getCategories();
-                                echo '<div class="shop-categories overflow-x-scroll">';
-                                foreach ($arr as $cat) {
-                                    $info = getInfo($cat);
-                                    echo '<div class="shop-category"><div class="shop-category-header"><img src="' . $info["img"].'" alt="' . $info["nome"] .'"></div><div class="shop-category-body"><a href="?cat=' . $cat . '"><span>' . $info["nome"] . '</span></a></div></div>';
-                                }
-                                echo '</div>';
+                                document.write('<div class="shop-categories overflow-x-scroll">')
+                                arr.foreach((cat)=>{
+                                    var info = getInfo(cat);
+                                    document.write(`<div class="shop-category">
+                                        <div class="shop-category-header">
+                                            <img src="`+`" alt="`+`">
+                                        </div>
+                                        <div class="shop-category-body">
+                                            <a href="?cat=`+`">
+                                                <span>`+`</span>
+                                            </a>
+                                        </div>
+                                    </div>`);
+                                })
+                                document.write('</div>')
                             }
-                        ?>
+                        </script>
                     </div>
                 </div>
             </div>
