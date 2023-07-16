@@ -1,5 +1,5 @@
 .new-arrivals::before {
-    background-image: url("/icons/paper-airplane.png");
+    background-image: url("../icons/paper-airplane.png");
     transform: translate(0,25%);
     content: "";
     display: inline-block;

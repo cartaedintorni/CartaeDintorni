@@ -43,7 +43,7 @@ a:active {
 
 
 .bg-home {
-    background-image: url("/icons/image1.jpg");
+    background-image: url("../icons/image1.jpg");
 }
 
 .center>* {
