@@ -1,0 +1,55 @@
+{
+    "categories": [
+        "scuola"
+    ],
+    "products":[
+        {
+            "id": 1,
+            "subid": 1,
+            "nome": "Zaino Eastpak rosso",
+            "marca": "Eastpak",
+            "descrizione": "Zaino Eastpak",
+            "dettagli": {
+                "altezza": "50 cm",
+                "capacità": "25 litri"
+            },
+            "disponibilità": 1,
+            "img": ["https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg"],
+            "prezzo": 25,
+            "tag": ["Zaino","scuola"],
+            "category":["scuola"]
+        },
+        {
+            "id": 1,
+            "subid":2,
+            "nome": "Zaino Eastpak nero",
+            "marca": "Eastpak",
+            "descrizione": "Zaino Eastpak",
+            "dettagli": {
+                "altezza": "50 cm",
+                "capacità": "25 litri"
+            },
+            "disponibilità": 1,
+            "img": ["https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg"],
+            "prezzo": 25,
+            "tag": ["Zaino","scuola"],
+            "category":["scuola"]
+        },
+        {
+            "id": 1,
+            "subid": 3,
+            "nome": "Zaino Eastpak blu",
+            "marca": "Eastpak",
+            "descrizione": "Zaino Eastpak",
+            "dettagli": {
+                "altezza": "50 cm",
+                "capacità": "25 litri"
+            },
+            "disponibilità": 1,
+            "img": ["https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg"],
+            "prezzo": 25,
+            "tag": ["Zaino","scuola"],
+            "category":["scuola"]
+        }
+    ]
+}

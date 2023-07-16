@@ -32,6 +32,7 @@
                 </div>
             </div>
         </div>
+        <!-- Body -->
         <div class="body">
             <div class="block">
                 <div class="product-list">
@@ -76,14 +77,6 @@
                  * @type {Array}
                  */
                 var arr = await getCategories();
-                // var ul = document.createElement("ul")
-                // for (x in arr) {
-                //     var li = document.createElement("li")
-                //     var info = await getInfo(arr[x]);
-                //     li.innerHTML=info["nome"]
-                //     ul.appendChild(li)
-                // }
-                // document.getElementById("categories").appendChild(ul)
                 if (arr.includes(_cat)) {
                     var prods = (await getProducts(_cat))
                     for (i in prods) {
