@@ -26,8 +26,8 @@
             </div>
             <div class="right">
                 <div class="menu">
-                    <div class="menu-item"><a href="https://m.facebook.com/people/Carta-e-Dintorni-di-Antonella-Citro/100063020331066/"><img src="icons/facebook.png" alt="Facebook"></a></div>
-                    <div class="menu-item"><a href=""><img src="https://cartaedintorni.github.io/CartaeDintorni/icons/instagram.png" alt="Instagram"></a></div>
+                    <div class="menu-item"><a href="https://m.facebook.com/people/Carta-e-Dintorni-di-Antonella-Citro/100063020331066/"><img src="https://cartaedintorni.github.io/CartaeDintorni/icons/facebook.png" alt="Facebook"></a></div>
+                    <div class="menu-item"><a href="https://instagram.com/cartolibreria_carta_e_dintorni"><img src="https://cartaedintorni.github.io/CartaeDintorni/icons/instagram.png" alt="Instagram"></a></div>
                     <!-- <div class="menu-item"><a href=""><img src="icons/whatsapp.png" alt="WhatsApp"></a></div> -->
                 </div>
             </div>
@@ -39,28 +39,12 @@
                     <div class="search">
                         <div class="searchbox">
                             <input type="text" id="searchbar" placeholder="Cerca"/>
-                            <div  id="categories"></div>
+                            <div  id="categories">
+                            </div>
+
                         </div>
-                        <div class="catalogue" id="catalogue"></div>
                     </div>
-                    <div class="product-result">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </nav>
+                    <div class="product-result" id="product-result">
                     </div>
                 </div>
             </div>
@@ -77,16 +61,42 @@
                  * @type {Array}
                  */
                 var arr = await getCategories();
+                var ul = document.createElement("ul")
+                for (i in arr) {
+                    var cat = arr[i]
+                    var li = document.createElement("li")
+                    var input = document.createElement("input")
+                    var labl = document.createElement("label")
+                    var img = document.createElement("img")
+                    var span = document.createElement("span")
+                    input.type="radio"
+                    input.name="cat"
+                    input.classList.add("filter-category")
+                    input.value=cat
+                    input.id="input-cat-"+cat
+                    labl.setAttribute("for","input-cat-"+cat)
+                    span.innerHTML=cat
+                    img.src="https://cartaedintorni.github.io/CartaeDintorni/icons/categories/"+cat+".png"
+                    labl.appendChild(img)
+                    labl.appendChild(span)
+                    li.appendChild(inp)
+                    li.appendChild(labl)
+                    ul.appendChild(li)
+                }
+                document.getElementById("categories").appendChild(ul)
+                var prods = []
                 if (arr.includes(_cat)) {
-                    var prods = (await getProducts(_cat))
-                    for (i in prods) {
-                        var prod = prods[i]
-                        console.log(prod["prezzo"])
-                        var prodinfo = "/product.html?data="+encodeURIComponent(JSON.stringify(prod))
-                        console.log(prodinfo)
-                        txt +=`<div class="product">
+                    prods = (await getProducts(_cat))
+                } else {
+                    prods = await getAllProducts()
+                }
+                for (i in prods) {
+                    var prod = prods[i]
+                    console.log(prod["prezzo"])
+                    var prodinfo = "/product.html?data="+encodeURIComponent(JSON.stringify(prod))
+                    txt +=`<div class="product" data-tags="`+Array.from(prod["tag"]).join(" ")+`" category="`+_cat+`">
                         <div class="product-header">
-                            <a src="`+prodinfo+`"><img src="`+prod["img"][0]+`" alt="`+`"></a>
+                            <a src="`+prodinfo+`"><img src="`+prod["img"][0]+`" alt="`+prod["nome"]+`"></a>
                         </div>
                         <div class="product-body">
                             <div class="product-category">
@@ -104,32 +114,10 @@
                             </div>
                         </div>
                     </div>`
-                    }                    
-                }
-                /*else {
-                    console.log("run")
-                    txt += '<div class="shop-categories overflow-x-scroll">'
-                        for (i in arr) {
-                            var cat = arr[i]
-                            var info = await getInfo(cat);
-                            console.log(info)
-                            if (info) {
-                                txt+=`<div class="shop-category">
-                                    <div class="shop-category-header">
-                                        <input type="radio" />
-                                        <label><img src="`+info["img"]+`" alt="`+`"></label>
-                                        </div>
-                                        <div class="shop-category-body">
-                                            <a href="?cat=`+cat+`">
-                                        <span>`+info["nome"]+`</span>
-                                        </a>
-                                        </div>
-                                        </div>`
-                                    }
-                                }
-                    txt+='</div>'
-                }*/
-                document.getElementById("catalogue").innerHTML=txt
+                    
+                }                    
+                
+                document.getElementById("product-result").innerHTML=txt
             }
             cb()
             </script>

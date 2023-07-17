@@ -23,16 +23,30 @@ async function getCategories() {
     return cont["categories"];
 }
 /**
+ * @param {string} c 
  * @returns {Array | null}
  */
-async function getProducts(cat) {
+async function getProducts(c) {
+    var cat = c.toLowerCase()
     var cats = await getCategories();
     if (cats.includes(cat)) {
-        var url = "/database/products.json";
-        var prd = (await file_get_contents(url))["products"];
-        return Array.from(prd).filter(x=>x.category.includes(cat))
+        if (cat=="nessuna") {
+            return getAllProducts()
+        } else {
+            var url = "/database/products.json";
+            var prd = (await file_get_contents(url))["products"];
+            return Array.from(prd).filter(x=>x.category.includes(cat))
+        }
     } 
     return null;
+}
+/**
+ * @returns {Array | null}
+ */
+async function getAllProducts() {
+    var url = "/database/products.json";
+    var prd = (await file_get_contents(url))["products"];
+    return Array.from(prd)
 }
 
 function getQuery() {

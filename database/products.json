@@ -1,5 +1,6 @@
 {
     "categories": [
+        "nessuna",
         "scuola"
     ],
     "products":[
@@ -17,7 +18,7 @@
             "img": ["https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg"],
             "prezzo": 25,
             "tag": ["Zaino","scuola"],
-            "category":["scuola"]
+            "category":"scuola"
         },
         {
             "id": 1,
@@ -33,7 +34,7 @@
             "img": ["https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg"],
             "prezzo": 25,
             "tag": ["Zaino","scuola"],
-            "category":["scuola"]
+            "category":"scuola"
         },
         {
             "id": 1,
@@ -49,7 +50,7 @@
             "img": ["https://newageshop.com/cdn/shop/products/221-eastpak-padded-pakr-ek00062023s1p_1400x.jpg"],
             "prezzo": 25,
             "tag": ["Zaino","scuola"],
-            "category":["scuola"]
+            "category":"scuola"
         }
     ]
 }
