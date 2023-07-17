@@ -94,9 +94,10 @@
                     var prod = prods[i]
                     console.log(prod["prezzo"])
                     var prodinfo = "/product.html?data="+encodeURIComponent(JSON.stringify(prod))
-                    txt +=`<div class="product" data-tags="`+Array.from(prod["tag"]).join(" ")+`" category="`+_cat+`">
+                    var pid = "#productinfo-"+prod["id"]+"-"+prod["subid"]
+                    txt +=`<div class="product card" data-tags="`+Array.from(prod["tag"]).join(" ")+`" category="`+_cat+`">
                         <div class="product-header">
-                            <a src="`+prodinfo+`"><img src="`+prod["img"][0]+`" alt="`+prod["nome"]+`"></a>
+                            <a src="`+prodinfo+`"><img class="card-img-top" src="`+prod["img"][0]+`" alt="`+prod["nome"]+`"></a>
                         </div>
                         <div class="product-body">
                             <div class="product-category">
@@ -111,6 +112,28 @@
                             </div>
                             <div class="product-price">
                                 <span class="sans"><span class="currency">€</span>`+prod["prezzo"]+`</span>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="`+pid+`">Info</button>
+                            <div class="modal fade" id="`+pid+`" tabindex="-1" aria-labelledby="`+pid+`-Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="`+pid+`-Label">`+prod["nome"]+`</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body container">
+                                            <div class="col-6">
+
+                                            </div>
+                                            <div class="col">
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>`
