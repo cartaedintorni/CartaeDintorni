@@ -50,7 +50,8 @@ async function getProducts(c) {
  * @returns {Array | null}
  */
 async function getAllProducts() {
-    var url = baseURl("/database/products.json");
+    var url = baseURl("/database/products.json")
+    //var url = "/database/products.json"
     var prd = await file_get_contents(url);
     return Array.from(prd["products"])
 }
@@ -137,7 +138,7 @@ function getHTMLfromProduct(prod){
                         </div>
                         <div class="modal-body container">
                             <div class="col-6">
-                                <div id="`+pid+`carouselIndicators" class="carousel slide">
+                                <div id="`+pid+`carouselIndicators" class="carousel carousel-dark slide">
                                     <div class="carousel-indicators">`
                                     +`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`
                                     +repeat(`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="&index" aria-current="true" aria-label="Slide &indexfromone"></button>`,images,{indexstartsfrom: 1})
