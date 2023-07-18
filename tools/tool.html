@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <input type="file" id="file" accept=".json">
+
+        <script>
+            
+            var i = document.getElementById("file")
+            i.addEventListener("change", handleFiles, false);
+            function handleFiles(event) {
+                var f = i.files[0]
+                i.setAttribute("disabled",true)
+                var reader = new FileReader();
+                reader.onload = onReaderLoad;
+                reader.readAsText(event.target.files[0]);
+            }
+
+            function onReaderLoad(event){
+                console.log(event.target.result);
+                var obj = JSON.parse(event.target.result);
+                alert_data(obj.name, obj.family);
+            }
+        </script>
+    </body>
+</html>

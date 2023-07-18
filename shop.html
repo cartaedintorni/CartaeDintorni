@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="globals/page.css">
+        <link rel="stylesheet" href="globals/icons.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/block.css">
+        <link rel="stylesheet" href="css/shopcategory.css">
+        <link rel="stylesheet" href="css/product.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="./cartaedintorni.js"></script>
+    </head>
+    <body>
+        <!-- HEADER -->
+        <div class="header">
+            <div class="left">
+                <img src="" alt="Carta e Dintorni">
+            </div>
+            <div class="middle">
+                <div class="menu">
+                    <div class="menu-item"><a href="https://cartaedintorni.github.io/CartaeDintorni/home.html"><span>Home</span></a></div>
+                    <div class="menu-item"><a href="https://cartaedintorni.github.io/CartaeDintorni/shop.html"><span>Negozio</span></a></div>
+                    <div class="menu-item"><a href="https://cartaedintorni.github.io/CartaeDintorni/info.html"><span>Info</span></a></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="menu">
+                    <div class="menu-item"><a href="https://m.facebook.com/people/Carta-e-Dintorni-di-Antonella-Citro/100063020331066/"><img src="https://cartaedintorni.github.io/CartaeDintorni/icons/facebook.png" alt="Facebook"></a></div>
+                    <div class="menu-item"><a href="https://instagram.com/cartolibreria_carta_e_dintorni"><img src="https://cartaedintorni.github.io/CartaeDintorni/icons/instagram.png" alt="Instagram"></a></div>
+                    <!-- <div class="menu-item"><a href=""><img src="icons/whatsapp.png" alt="WhatsApp"></a></div> -->
+                </div>
+            </div>
+        </div>
+        <!-- Body -->
+        <div class="body">
+            <div class="block">
+                <div class="product-list row" style="margin: 8px"><!-- scrollbar1 -->
+                    <div class="search col-4">
+                        <div class="searchbox">
+                            <input type="text" id="searchbar" placeholder="Cerca"/>
+                            <div  id="categories">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="product-result col-8" id="product-result">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            
+            async function cb() {
+                // console.log("run")
+                
+                var txt = ""
+                var _cat = getQuery()["cat"]??"nessuna"
+                /**
+                 * @type {Array}
+                 */
+                var arr = await getCategories();
+                var ul = document.createElement("ul")
+                for (i in arr) {
+                    var cat = arr[i]
+                    var li = document.createElement("li")
+                    var input = document.createElement("input")
+                    var labl = document.createElement("label")
+                    var img = document.createElement("img")
+                    var span = document.createElement("span")
+                    input.type="radio"
+                    input.name="cat"
+                    input.value=cat
+                    input.classList.add("filter-category")
+                    input.value=cat
+                    if (cat==_cat) {
+                        input.checked=true
+                    }
+                    input.id="input-cat-"+cat
+                    input.addEventListener("change",(e)=>{
+                        window.location.href=window.location.origin+window.location.pathname+"?cat="+(e.target.value??"nessuna")
+                    })
+                    labl.setAttribute("for","input-cat-"+cat)
+                    span.innerHTML=cat
+                    img.src="https://cartaedintorni.github.io/CartaeDintorni/icons/categories/"+cat+".png"
+                    labl.appendChild(img)
+                    labl.appendChild(span)
+                    li.appendChild(input)
+                    li.appendChild(labl)
+                    ul.appendChild(li)
+                }
+                document.getElementById("categories").appendChild(ul)
+                var prods = []
+                if (arr.includes(_cat)) {
+                    prods = (await getProducts(_cat))
+                } else {
+                    try {
+                        prods = await getAllProducts()
+                    } catch {
+                        console.log("qui")
+                    }
+                }
+                for (i in prods) {
+                    txt+=getHTMLfromProduct(prods[i])
+                }                    
+                
+                document.getElementById("product-result").innerHTML=txt
+            }
+            cb()
+            </script>
+    </body>
+</html>

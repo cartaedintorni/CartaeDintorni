@@ -1,0 +1,9 @@
+.new-arrivals::before {
+    background-image: url("../icons/paper-airplane.png");
+    transform: translate(0,25%);
+    content: "";
+    display: inline-block;
+    background-size: cover;
+    width: var(--s, 1em);
+    height: var(--s, 1em);
+}
