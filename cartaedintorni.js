@@ -1,8 +1,5 @@
 function baseURl(path) {
-    if (window.location.origin=="https://cartaedintorni.github.io/") {
-        return "https://cartaedintorni.github.io/CartaeDintorni"+path
-    }
-    return path;
+    return "https://cartaedintorni.github.io/CartaeDintorni"+path
 }
 /**
  * @param {string} url 
