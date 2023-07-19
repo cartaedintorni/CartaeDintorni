@@ -134,7 +134,7 @@ function getHTMLfromProduct(prod){
     var pcat = prod["category"]
     var images = Array.from(prod["img"])
     var pcover = images.shift()
-    return `<div class="product card" category="`+pcat+` name="`+prod["nome"]+`" tag="`+prod["tag"].join("")+`>
+    return `<div class="product card" category="`+pcat+` name="`+prod["nome"]+`" tag="`+prod["tag"].join("")+`">
         <div class="product-header">
             <a href=""><img class="card-img-top" src="`+pcover+`" alt="`+prod["nome"]+`"></a>
         </div>
@@ -165,9 +165,9 @@ function getHTMLfromProduct(prod){
                                 <div class="col-6">
                                     <div id="`+pid+`carouselIndicators" class="carousel carousel-dark slide">
                                         <div class="carousel-indicators">`
-                                        +`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`
-                                        +repeat(`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="&index" aria-current="true" aria-label="Slide &indexfromone"></button>`,images,{indexstartsfrom: 1})
-                                    +`</div>
+                                            +`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`
+                                            +repeat(`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="&index" aria-current="true" aria-label="Slide &indexfromone"></button>`,images,{indexstartsfrom: 1})
+                                        +`</div>
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <img src="`+pcover+`" class="d-block w-100 img-fluid" alt="`+prod["nome"]+`">
@@ -175,7 +175,7 @@ function getHTMLfromProduct(prod){
                                             +repeat(`<div class="carousel-item">
                                                 <img src="&value" class="d-block w-100 img-fluid" alt="...">
                                             </div>`,images,{indexstartsfrom: 1})
-                                    +`</div>
+                                        +`</div>
                                         <button class="carousel-control-prev" type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Previous</span>
