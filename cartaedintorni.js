@@ -229,13 +229,9 @@ async function setCategories(ele) {
         var span = document.createElement("span")
         input.type="radio"
         input.name="cat"
-        input.value=cat
         input.classList.add("filter-category")
         input.value=cat
         input.id="input-cat-"+cat
-        input.addEventListener("change",(e)=>{
-            window.location.href=window.location.origin+window.location.pathname+"?cat="+(e.target.value??"nessuna")
-        })
         labl.setAttribute("for","input-cat-"+cat)
         span.innerHTML=cat
         img.src="https://cartaedintorni.github.io/CartaeDintorni/icons/categories/"+cat+".png"
