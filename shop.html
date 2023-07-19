@@ -37,12 +37,23 @@
             <div class="block">
                 <div class="product-list row" style="margin: 8px"><!-- scrollbar1 -->
                     <div class="search col-4">
-                        <div class="searchbox">
+                        <form class="searchbox" >
                             <input type="text" id="searchbar" placeholder="Cerca"/>
-                            <div  id="categories">
+                            <div class="accordion" id="accordionFilter">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategories" aria-expanded="true" aria-controls="collapseCategories">
+                                        Accordion Item #1
+                                        </button>
+                                    </h2>
+                                    <div id="collapseCategories" class="accordion-collapse collapse show" data-bs-parent="#accordionFilter">
+                                        <div class="accordion-body" id="categories">
+                                            
+                                        </div>
+                                    </div>
+                                </div>                              
                             </div>
-
-                        </div>
+                        </form>
                     </div>
                     <div class="product-result col-8" id="product-result">
                     </div>
@@ -51,59 +62,8 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <script type="text/javascript">
-            
-            async function cb() {
-                // console.log("run")
-                
-                var txt = ""
-                var _cat = getQuery()["cat"]??"nessuna"
-                /**
-                 * @type {Array}
-                 */
-                var arr = await getCategories();
-                var ul = document.createElement("ul")
-                for (i in arr) {
-                    var cat = arr[i]
-                    var li = document.createElement("li")
-                    var input = document.createElement("input")
-                    var labl = document.createElement("label")
-                    var img = document.createElement("img")
-                    var span = document.createElement("span")
-                    input.type="radio"
-                    input.name="cat"
-                    input.value=cat
-                    input.classList.add("filter-category")
-                    input.value=cat
-                    if (cat==_cat) {
-                        input.checked=true
-                    }
-                    input.id="input-cat-"+cat
-                    input.addEventListener("change",(e)=>{
-                        window.location.href=window.location.origin+window.location.pathname+"?cat="+(e.target.value??"nessuna")
-                    })
-                    labl.setAttribute("for","input-cat-"+cat)
-                    span.innerHTML=cat
-                    img.src="https://cartaedintorni.github.io/CartaeDintorni/icons/categories/"+cat+".png"
-                    labl.appendChild(img)
-                    labl.appendChild(span)
-                    li.appendChild(input)
-                    li.appendChild(labl)
-                    ul.appendChild(li)
-                }
-                document.getElementById("categories").appendChild(ul)
-                var prods = []
-                if (arr.includes(_cat)) {
-                    prods = (await getProducts(_cat))
-                } else {
-                    prods = await getAllProducts()
-                }
-                for (i in prods) {
-                    txt+=getHTMLfromProduct(prods[i])
-                }                    
-                
-                document.getElementById("product-result").innerHTML=txt
-            }
-            cb()
-            </script>
+            setCategories(document.getElementById("categories"))
+            setProducts(document.getElementById("product-result"))
+        </script>
     </body>
 </html>

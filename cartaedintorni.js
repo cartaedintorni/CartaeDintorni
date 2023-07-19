@@ -197,3 +197,53 @@ function getHTMLfromProduct(prod){
         </div>
     </div>`
 }
+
+
+/*** */
+async function setProducts(ele) {
+    var prods = await getAllProducts()
+    var txt = ""
+    for (i in prods) {
+        txt+=getHTMLfromProduct(prods[i])
+    }                    
+    ele.innerHTML=txt
+}
+
+async function setCategories(ele) {
+    var arr = await getCategories();
+    var ul = document.createElement("ul")
+    for (i in arr) {
+        var cat = arr[i]
+        var li = document.createElement("li")
+        var input = document.createElement("input")
+        var labl = document.createElement("label")
+        var img = document.createElement("img")
+        var span = document.createElement("span")
+        input.type="radio"
+        input.name="cat"
+        input.value=cat
+        input.classList.add("filter-category")
+        input.value=cat
+        if (cat==_cat) {
+            input.checked=true
+        }
+        input.id="input-cat-"+cat
+        input.addEventListener("change",(e)=>{
+            window.location.href=window.location.origin+window.location.pathname+"?cat="+(e.target.value??"nessuna")
+        })
+        labl.setAttribute("for","input-cat-"+cat)
+        span.innerHTML=cat
+        img.src="https://cartaedintorni.github.io/CartaeDintorni/icons/categories/"+cat+".png"
+        labl.appendChild(img)
+        labl.appendChild(span)
+        li.appendChild(input)
+        li.appendChild(labl)
+        ul.appendChild(li)
+    }
+    ele.innerHTML = ""
+    ele.appendChild(ul)
+}
+
+function onFormUpdate() {
+    
+}
