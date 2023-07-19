@@ -180,7 +180,7 @@ function getHTMLfromProduct(prod){
                                 </div>
                                 <div class="col">
                                     <span>`+prod["nome"]+`</span>
-                                    <span>`+prod["category"]`</span>
+                                    <span>`+prod["category"]+`</span>
                                     <span>`+prod["marca"]+`</span>
                                     <span>`+prod["descrizione"]+`</span>
                                     <span> Disponibilità: </span><span>`+prod["disponibilità"]+`</span>
