@@ -126,7 +126,7 @@ function getHTMLfromProduct(prod){
     var pcat = prod["category"]
     var images = Array.from(prod["img"])
     var pcover = images.shift()
-    return `<div class="product card" category="`+pcat+`">
+    return `<div class="product card" category="`+pcat+` name="`+prod["nome"]+`" tag="`+prod["tag"].join("")+`>
         <div class="product-header">
             <a href=""><img class="card-img-top" src="`+pcover+`" alt="`+prod["nome"]+`"></a>
         </div>
@@ -243,5 +243,43 @@ async function setCategories(ele) {
 }
 
 function onFormUpdate() {
-    
+    /**
+     * @type {HTMLFormElement}
+     */
+    var form = document.getElementById("filter")
+    var catinp = Array.from(form.getElementsByTagName("input")).filter(x=>x.type=="radio"&&x.name=="cat"&&x.checked)
+    var tags = Array.from(form.getElementsByTagName("input")).filter(x=>x.type=="checkbox"&&x.name=="tags"&&x.checked).map(x=>x.value)
+    // GET data from FORM
+    var data = {
+        // name: document.getElementById("searchbar").value??null,
+        cat: catinp.length>0?catinp[0].value:null,
+        tags: tags.length>0?tags:null
+    }
+
+    var prods = Array.from(document.getElementById("product-result").getElementsByClassName("product"))
+    for (var i in prods){ 
+        var prod = prods[i]
+        var vsb = true
+        if (data.cat) {
+            var c = prod.getAttribute("category").toLowerCase()
+            var dc = data.cat.toLowerCase()
+            if (!c.includes(dc)) {vsb=false}
+        }
+        if (data.tags) {
+            var t = prod.getAttribute("tag").toLowerCase().split(" ")
+            var dt = data.tags.map(x=>x.toLowerCase())
+            /**
+             * t = scuola, disegno
+             * dt = scuola matita disegno
+             */
+            for (var i in dt){
+                var e = dt[i]
+                if (!t.includes(e)) {
+                    vsb=false
+                    break;
+                }
+            }
+        }
+        prod.style.display=vsb?"flex":"none"
+    }
 }
