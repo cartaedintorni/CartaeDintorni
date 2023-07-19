@@ -95,9 +95,17 @@ a:active {
 }
 input[type=radio]:checked + label>img {
     border: 1px solid darkcyan;
-    box-shadow: 0 0 3px 3px teal;
+    box-shadow: 0 0 2px 2px teal;
 }
 input[type=radio] + label>img {
+    width: 50px;
+    height: 50px;
+}
+input[type=checkbox]:checked + label>img {
+    border: 1px solid darkcyan;
+    box-shadow: 0 0 2px 2px teal;
+}
+input[type=checkbox] + label>img {
     width: 50px;
     height: 50px;
 }
@@ -112,7 +120,7 @@ input[type=radio] + label>img {
 }
 .scrollbar1::-webkit-scrollbar-thumb {
     border-radius: 8px;
-  border: 3px solid transparent;
-   background-clip: content-box;
+    border: 3px solid transparent;
+    background-clip: content-box;
     background-color: #d55959;
 }

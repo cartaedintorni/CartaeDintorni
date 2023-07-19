@@ -4,6 +4,9 @@
         "scuola",
         "altro"
     ],
+    "tags": [
+        "zaino", "scuola", "matita", "penna", "riga", "disegno"
+    ],
     "products":[
         {
             "id": 1,

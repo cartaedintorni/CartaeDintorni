@@ -29,6 +29,14 @@ async function getCategories() {
     return cont["categories"];
 }
 /**
+ * @returns {Array}
+ */
+async function getTags() {
+    var url = baseURl("/database/products.json");
+    var cont = await file_get_contents(url);
+    return cont["tags"];
+}
+/**
  * @param {string} c 
  * @returns {Array | null}
  */
@@ -282,4 +290,36 @@ function onFormUpdate() {
         }
         prod.style.display=vsb?"flex":"none"
     }
+}
+
+async function setTags(ele) {
+    var arr = await getTags();
+    var ul = document.createElement("ul")
+    for (i in arr) {
+        var tag = arr[i]
+        var li = document.createElement("li")
+        var input = document.createElement("input")
+        var labl = document.createElement("label")
+        var img = document.createElement("img")
+        var span = document.createElement("span")
+        input.type="checkbox"
+        input.name="tags"
+        input.classList.add("filter-tags")
+        input.value=tag
+        input.id="input-tag-"+tag
+        labl.setAttribute("for","input-cat-"+tag)
+        span.innerHTML=tag
+        img.src="https://cartaedintorni.github.io/CartaeDintorni/icons/tags/"+tag+".png"
+        labl.appendChild(img)
+        labl.appendChild(span)
+        li.appendChild(input)
+        li.appendChild(labl)
+        ul.appendChild(li)
+    }
+    ele.innerHTML = `<button type="button" class="btn btn-dark" id="clear-tags">X</button>`
+    document.getElementById("clear-tags").addEventListener("click", ()=>{
+        Array.from(document.getElementsByClassName("filter-tags")).forEach(x=>x.checked=false)
+    })
+    ele.appendChild(ul)
+    //ul.getElementsByTagName("input")[0].checked=true
 }
