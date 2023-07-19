@@ -224,9 +224,6 @@ async function setCategories(ele) {
         input.value=cat
         input.classList.add("filter-category")
         input.value=cat
-        if (cat==_cat) {
-            input.checked=true
-        }
         input.id="input-cat-"+cat
         input.addEventListener("change",(e)=>{
             window.location.href=window.location.origin+window.location.pathname+"?cat="+(e.target.value??"nessuna")
@@ -242,6 +239,7 @@ async function setCategories(ele) {
     }
     ele.innerHTML = ""
     ele.appendChild(ul)
+    ul.getElementsByTagName("input")[0].checked=true
 }
 
 function onFormUpdate() {
