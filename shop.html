@@ -95,11 +95,7 @@
                 if (arr.includes(_cat)) {
                     prods = (await getProducts(_cat))
                 } else {
-                    try {
-                        prods = await getAllProducts()
-                    } catch {
-                        console.log("qui")
-                    }
+                    prods = await getAllProducts()
                 }
                 for (i in prods) {
                     txt+=getHTMLfromProduct(prods[i])

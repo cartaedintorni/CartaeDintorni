@@ -84,6 +84,22 @@ function repeat(str="", arr=[], opt={}) {
     } 
     return "";
 }
+function getDetails(info) {
+    if (info) {
+        var keys = Object.keys(info)
+        if (keys.length>0) {
+            return `<div class="row">
+                <div>`
+                +keys.map(key=>{
+                    var value = info[key]
+                    return `<span><span>`+key+`: </span><span>`+value+`</span></span>`
+                }).join("")+
+                `</div>
+            </div>`
+        }
+    }
+    return ""
+}
 /**
  * 
  * @param {{
@@ -137,34 +153,41 @@ function getHTMLfromProduct(prod){
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body container">
-                            <div class="col-6">
-                                <div id="`+pid+`carouselIndicators" class="carousel carousel-dark slide">
-                                    <div class="carousel-indicators">`
-                                    +`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`
-                                    +repeat(`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="&index" aria-current="true" aria-label="Slide &indexfromone"></button>`,images,{indexstartsfrom: 1})
-                              +`</div>
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="`+pcover+`" class="d-block w-100 img-fluid" alt="`+prod["nome"]+`">
-                                        </div>`
-                                        +repeat(`<div class="carousel-item">
-                                            <img src="&value" class="d-block w-100 img-fluid" alt="...">
-                                        </div>`,images,{indexstartsfrom: 1})
-                                   +`</div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div id="`+pid+`carouselIndicators" class="carousel carousel-dark slide">
+                                        <div class="carousel-indicators">`
+                                        +`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`
+                                        +repeat(`<button type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide-to="&index" aria-current="true" aria-label="Slide &indexfromone"></button>`,images,{indexstartsfrom: 1})
+                                    +`</div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="`+pcover+`" class="d-block w-100 img-fluid" alt="`+prod["nome"]+`">
+                                            </div>`
+                                            +repeat(`<div class="carousel-item">
+                                                <img src="&value" class="d-block w-100 img-fluid" alt="...">
+                                            </div>`,images,{indexstartsfrom: 1})
+                                    +`</div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#`+pid+`carouselIndicators" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                            
-                            </div>
-                        </div>
+                                <div class="col">
+                                    <span>`+prod["nome"]+`</span>
+                                    <span>`+prod["category"]`</span>
+                                    <span>`+prod["marca"]+`</span>
+                                    <span>`+prod["descrizione"]+`</span>
+                                    <span> Disponibilità: </span><span>`+prod["disponibilità"]+`</span>
+                                    <span>`+prod["prezzo"]+`</span>
+                                </div>
+                            </div>`+getDetails(prod["dettagli"])+
+                        `</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
                         </div>
