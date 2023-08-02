@@ -1,7 +1,7 @@
 .header {
     height: 75px; 
     
-    background-color: whitesmoke;
+    background-color: floralwhite;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -29,7 +29,7 @@
 }
 
 .header .menu .menu-item {
-    color: darkgrey;
+    color: chocolate;
     font-size: 24px;
 }
 .header .menu .menu-item img {
