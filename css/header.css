@@ -1,38 +1,80 @@
-.header {
-    height: 75px; 
-    
-    background-color: floralwhite;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    position: fixed;
-    top: 0;
-    z-index: 100; 
-    width: 100%;
-}
+@media (min-width: 700px) {
+    .header {
+        height: 75px; 
+        
+        background-color: floralwhite;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        position: fixed;
+        top: 0;
+        z-index: 100; 
+        width: 100%;
+    }
 
-.header .left, .header .right {
-    flex: 1
-}
-.header .middle {
-    flex: 5
-}
-.header .menu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: baseline;
-}
+    .header .left, .header .right {
+        flex: 1
+    }
+    .header .middle {
+        flex: 5
+    }
+    .header .menu {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: baseline;
+    }
 
-.header .menu .menu-item {
-    color: chocolate;
-    font-size: 24px;
+    .header .menu .menu-item {
+        color: chocolate;
+        font-size: 24px;
+    }
+    .header .menu .menu-item img {
+        width: 24px;
+        height: 24px;
+    }
 }
-.header .menu .menu-item img {
-    width: 24px;
-    height: 24px;
+@media (max-width: 700px) {
+    .header {
+        height: 15%; 
+        
+        background-color: floralwhite;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        position: fixed;
+        top: 0;
+        z-index: 100; 
+        width: 100%;
+    }
+
+    .header .left, .header .right {
+        flex: 1
+    }
+    .header .middle {
+        flex: 5
+    }
+    .header .menu {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: baseline;
+    }
+
+    .header .menu .menu-item {
+        color: chocolate;
+        font-size: 24px;
+    }
+    .header .menu .menu-item img {
+        width: 24px;
+        height: 24px;
+    }
 }
