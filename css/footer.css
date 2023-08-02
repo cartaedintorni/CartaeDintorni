@@ -1,0 +1,16 @@
+.iconsmenu {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: start;
+    gap: 20px;
+}
+.iconsmenu .iconsmenu-item {
+    color: darkgrey;
+    font-size: 24px;
+}
+.iconsmenu .iconsmenu-item img {
+    width: 24px;
+    height: 24px;
+}

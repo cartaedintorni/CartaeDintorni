@@ -42,7 +42,9 @@
     width: 200px;
     min-width: 200px;
     max-width: 200px;
-    
+    height: 415px;
+    min-height: 415px;
+    max-height: 415px;
 }
 .product-body {
     padding-left: 15px;
@@ -89,7 +91,6 @@
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 550;
-    font-size: 18px;
     line-height: 18px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -104,3 +105,31 @@
     gap: 10vw;
 }
 
+.product-info .product-info-category {
+    text-transform: uppercase;
+    font-size: 24px;
+}
+.product-info .product-info-title {
+    text-transform: uppercase;
+    font-size: 36px;
+}
+.product-info .product-info-brand {
+    text-transform: uppercase;
+    font-size: 24px;
+}
+.product-info .product-info-description {
+    font-size: 20px;
+}
+.product-info .product-info-disp {
+    font-size: 24px;
+}
+.product-info .product-info-price {
+    color: black;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 550;
+    line-height: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}

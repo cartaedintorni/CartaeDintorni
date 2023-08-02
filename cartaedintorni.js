@@ -100,7 +100,7 @@ function getDetails(info) {
                 <div>`
                 +keys.map(key=>{
                     var value = info[key]
-                    return `<span><span>`+key+`: </span><span>`+value+`</span></span>`
+                    return `<span class=""><span class="text-capitalize fw-bold">`+key+`: </span><span class="fw-normal">`+value+`</span></span><br>`
                 }).join("")+
                 `</div>
             </div>`
@@ -127,7 +127,7 @@ function getDetails(info) {
  * }} prod 
  * @returns 
  */
-function getHTMLfromProduct(prod){
+function getHTMLfromProduct(prod,btns=true){
     console.log(prod["prezzo"])
     var prodinfo = "/product.html?data="+encodeURIComponent(JSON.stringify(prod))
     var pid = "productinfo-"+prod["id"]
@@ -141,20 +141,20 @@ function getHTMLfromProduct(prod){
         <div class="product-body card-body">
             <div class="product-category card-subtitle">
                 <span class="truncate">
-                    <a class="" href="/shop.html?cat=`+pcat+`" rel="tag">`+pcat+`</a>
+                    <a class="" href="#" rel="tag">`+pcat+`</a>
                 </span>
             </div>
             <div class="product-title card-title">
                 <span class="truncate">
-                    <a href="">`+prod["nome"]+`</a>
+                    <a href="#">`+prod["nome"]+`</a>
                 </span>
             </div>
             <div class="product-price card-text">
                 <span class="sans"><span class="currency">€</span>`+prod["prezzo"]+`</span>
-            </div>
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#`+pid+`">Info</button>
+            </div>`+
+            (btns?`<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#`+pid+`">Info</button>
             <div class="modal fade" id="`+pid+`" tabindex="-1" aria-labelledby="`+pid+`-Label" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="`+pid+`-Label">`+prod["nome"]+`</h1>
@@ -186,13 +186,13 @@ function getHTMLfromProduct(prod){
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <span>`+prod["nome"]+`</span>
-                                    <span>`+prod["category"]+`</span>
-                                    <span>`+prod["marca"]+`</span>
-                                    <span>`+prod["descrizione"]+`</span>
-                                    <span> Disponibilità: </span><span>`+prod["disponibilità"]+`</span>
-                                    <span>`+prod["prezzo"]+`</span>
+                                <div class="col product-info">
+                                    <span class="product-info-category">`+prod["category"]+`</span><br>
+                                    <span class="product-info-title">`+prod["nome"]+`</span><br>
+                                    <span class="product-info-brand">`+prod["marca"]+`</span><br>
+                                    <span class="product-info-description">`+prod["descrizione"]+`</span><br>
+                                    <span class="product-info-disp"><span> Disponibilità: </span><span>`+prod["disponibilità"]+`</span></span><br>
+                                    <span class="product-info-price"><span class="">€</span>`+prod["prezzo"]+`</span>
                                 </div>
                             </div>`+getDetails(prod["dettagli"])+
                         `</div>
@@ -201,8 +201,8 @@ function getHTMLfromProduct(prod){
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>`:"")+
+        `</div>
     </div>`
 }
 
@@ -232,6 +232,7 @@ async function setCategories(ele) {
         input.classList.add("filter-category")
         input.value=cat
         input.id="input-cat-"+cat
+        input.addEventListener("click",onFormUpdate)
         labl.setAttribute("for","input-cat-"+cat)
         span.innerHTML=cat
         img.src="https://cartaedintorni.github.io/CartaeDintorni/icons/categories/"+cat+".png"
@@ -265,9 +266,11 @@ function onFormUpdate() {
         var prod = prods[i]
         var vsb = true
         if (data.cat) {
-            var c = prod.getAttribute("category").toLowerCase()
             var dc = data.cat.toLowerCase()
-            if (!c.includes(dc)) {vsb=false}
+            if (dc!="nessuna") {
+                var c = prod.getAttribute("category").toLowerCase()
+                if (!c.includes(dc)) {vsb=false}
+            }
         }
         if (data.tags) {
             var t = prod.getAttribute("tag").toLowerCase().split(" ")
